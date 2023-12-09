@@ -1,1 +1,7 @@
 /* Write your CSS here */
+.heading {
+  color: white;
+  font-family: 'Bree serif';
+  font-size: 29px;
+  padding-left: 15px;
+}

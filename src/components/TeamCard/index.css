@@ -1,1 +1,23 @@
 /* Write your CSS here */
+.teams-list-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.team-card-container {
+  background-color: transparent;
+  border: 3px solid 'white';
+  list-style-type: none;
+}
+.team-logo {
+  width: 50px;
+}
+.name {
+  font-family: 'Bree serif';
+  font-size: 15px;
+  color: white;
+}
+.link {
+  background-color: transparent;
+  border: 3px solid 'white';
+  list-style-type: none;
+}
