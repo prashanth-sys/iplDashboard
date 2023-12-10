@@ -8,8 +8,14 @@ class TeamMatches extends Component {
     this.getMatchDetails()
   }
 
-  getMatchDetails = () => {
-    console.log(this.props)
+  getMatchDetails = async () => {
+    const {match} = this.props
+    const {params} = match
+    const {id} = params
+    console.log(id)
+    const response = await fetch(`https://apis.ccbp.in/ipl/:${id}`)
+    const data = await response.json()
+    console.log(data)
   }
 
   render() {

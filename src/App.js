@@ -9,9 +9,11 @@ import './App.css'
 
 const App = () => (
   <BrowserRouter>
+    <Home />
     <Switch>
-      <Route path="/" component={Home} />
-      <Route exact path="/team-match/:id" component={TeamMatches} />
+      <Home />
+      <Route exact path="/" component={Home} />
+      <Route path="/ipl/:id" component={TeamMatches} />
       <Route component={NotFound} />
     </Switch>
   </BrowserRouter>

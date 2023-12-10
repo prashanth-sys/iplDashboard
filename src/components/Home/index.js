@@ -40,7 +40,8 @@ class Home extends Component {
         </div>
         {isLoading ? (
           <div data-testid="loader">
-            <Loader type="Oval" color="#ffffff" height={50} width={50} />
+            {' '}
+            <Loader type="Oval" color="#ffffff" height={50} width={50} />{' '}
           </div>
         ) : (
           teams.map(item => <TeamCard teamData={item} key={item.id} />)
