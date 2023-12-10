@@ -11,7 +11,6 @@ const App = () => (
   <BrowserRouter>
     <Home />
     <Switch>
-      <Home />
       <Route exact path="/" component={Home} />
       <Route path="/team-match/:id" component={TeamMatches} />
       <Route component={NotFound} />
