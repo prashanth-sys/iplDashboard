@@ -1,1 +1,6 @@
 /* Write your CSS here */
+.team-color-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
