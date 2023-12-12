@@ -22,11 +22,13 @@ class TeamMatches extends Component {
     const {params} = match
     const {id} = params
     console.log(id)
-    const response = await fetch(`https://apis.ccbp.in/ipl/${id}`)
+    const response = await fetch(`https://apis.ccbp.in/team-matches/${id}`)
     const data = await response.json()
     console.log(data)
+
     const updatedTeams = {
       teamBannerUrl: data.team_banner_url,
+      latestMatchDetails: data.latest_match_details,
       umpires: data.latest_match_details.umpires,
       result: data.latest_match_details.result,
       manOfTheMatch: data.latest_match_details.man_of_the_match,
@@ -38,6 +40,7 @@ class TeamMatches extends Component {
       firstInnings: data.latest_match_details.first_innings,
       secondInnings: data.latest_match_details.second_innings,
       matchStatus: data.latest_match_details.match_status,
+
       recentMatches: data.recent_matches,
       recentUmpairs: data.recent_matches.umpires,
       recentResult: data.recent_matches.result,
@@ -51,27 +54,32 @@ class TeamMatches extends Component {
       recentSecondIninnings: data.recent_matches.second_innings,
       recentMatchStatus: data.recent_matches.match_status,
     }
-    this.setState({teamsMatch: updatedTeams, isLoading: false})
+
+    this.setState({
+      teamsMatch: updatedTeams,
+
+      isLoading: false,
+    })
   }
 
   getGradientColor = id => {
     switch (id) {
-      case 'team1':
+      case 'RCB':
         return ['#d91c1f', '#1e293b']
-      case 'team2':
+      case 'KKR':
         return ['#4f5db0', '#5755a7']
 
-      case 'team3':
+      case 'KXP':
         return ['#d91c1f', '#a4261d']
-      case 'team4':
+      case 'CSK':
         return ['#f7db00', '#ffffff33']
-      case 'team5':
+      case 'RR':
         return ['#da237b', ' #ffffff33']
-      case 'team6':
+      case 'MI':
         return [' #13418b', '#5755a7']
-      case 'team7':
+      case 'SRH':
         return ['#f26d22', '#ffffff33']
-      case 'team8':
+      case 'DC':
         return ['#5755a7', '#4f5db0']
       default:
         return ['white', 'white']
@@ -80,7 +88,7 @@ class TeamMatches extends Component {
 
   renderTeamsMatches = () => {
     const {teamsMatch} = this.state
-    const {teamBannerUrl, teamColors} = teamsMatch
+    const {teamBannerUrl, teamColors, latestMatchDetails} = teamsMatch
     const gradientColors =
       teamColors && teamColors.length ? teamColors.join(', ') : 'white, white'
 
@@ -90,8 +98,8 @@ class TeamMatches extends Component {
     }
     return (
       <div className="team-color-container" style={containerStyle}>
-        <img src={teamsMatch.teamBannerUrl} alt={teamBannerUrl} />
-        {teamsMatch.map(item => (
+        <img src={teamBannerUrl} alt={teamBannerUrl} />
+        {latestMatchDetails.map(item => (
           <LatestMatch matchDetails={item} key={item.id} />
         ))}
       </div>
