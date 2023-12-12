@@ -1,6 +1,8 @@
 // Write your code here
 import {Component} from 'react'
 
+import LatestMatch from './components/LatestMatch'
+
 import Loader from 'react-loader-spinner'
 
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
@@ -35,6 +37,7 @@ class TeamMatches extends Component {
       firstInnings: data.latest_match_details.first_innings,
       secondInnings: data.latest_match_details.second_innings,
       matchStatus: data.latest_match_details.match_status,
+      recentMatches: data.recent_matches,
     }
     this.setState({teamsMatch: updatedTeams, isLoading: false})
   }
@@ -76,6 +79,7 @@ class TeamMatches extends Component {
     return (
       <div className="team-color-container" style={containerStyle}>
         <img src={teamBannerUrl} alt={teamBannerUrl} />
+        <LatestMatch />
       </div>
     )
   }
