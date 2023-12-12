@@ -1,11 +1,12 @@
 // Write your code here
-import {Component} from 'react'
 
-import LatestMatch from './components/LatestMatch'
+import {Component} from 'react'
 
 import Loader from 'react-loader-spinner'
 
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
+
+import LatestMatch from '../LatestMatch'
 
 import './index.css'
 
@@ -38,6 +39,17 @@ class TeamMatches extends Component {
       secondInnings: data.latest_match_details.second_innings,
       matchStatus: data.latest_match_details.match_status,
       recentMatches: data.recent_matches,
+      recentUmpairs: data.recent_matches.umpires,
+      recentResult: data.recent_matches.result,
+      recentManOfTheMatch: data.recent_matches.man_of_the_match,
+      recentId: data.recent_matches.id,
+      recentDate: data.recent_matches.date,
+      recentVenue: data.recent_matches.venue,
+      recentCompetatingTeam: data.recent_matches.competing_team,
+      recentCompetatingTeamLogo: data.recent_matches.competing_team_logo,
+      recentFirstIninnigs: data.recent_matches.first_innings,
+      recentSecondIninnings: data.recent_matches.second_innings,
+      recentMatchStatus: data.recent_matches.match_status,
     }
     this.setState({teamsMatch: updatedTeams, isLoading: false})
   }
@@ -78,8 +90,10 @@ class TeamMatches extends Component {
     }
     return (
       <div className="team-color-container" style={containerStyle}>
-        <img src={teamBannerUrl} alt={teamBannerUrl} />
-        <LatestMatch />
+        <img src={teamsMatch.teamBannerUrl} alt={teamBannerUrl} />
+        {teamsMatch.map(item => (
+          <LatestMatch matchDetails={item} key={item.id} />
+        ))}
       </div>
     )
   }
